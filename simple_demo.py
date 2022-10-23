@@ -51,10 +51,20 @@ def write_mp3_by_base64_content(audio_content_base64, filename="foo.mp3"):
 
 def play_with_sox(filename):
     print ("sox play...")
-    os.system("play foo.mp3")
+    try:
+        os.system("play foo.mp3")
+        return 0
+    except :
+        return 1
 
 
 def play(filename):
+    
+    is_play_success = play_with_sox("foo.mp3")
+    if is_play_success == 0:
+        return 0
+
+
 
     if filename.startswith("/") or filename.startswith("./"):
         None
@@ -64,10 +74,7 @@ def play(filename):
     try:
         playsound(filename)
     except:
-        try: 
-            Play_mp3.play(filename)
-        except:
-            play_with_sox("foo.mp3")
+        Play_mp3.play(filename)
 
 def print_hi(name):
     # 在下面的代码行中使用断点来调试脚本。
