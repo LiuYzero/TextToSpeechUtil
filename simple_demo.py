@@ -6,6 +6,7 @@ import requests
 import base64
 from playsound import playsound
 import Play_mp3
+import os
 
 def covert_text_to_mp3(text):
     url = "http://www.liminba.com/tool_api/tts.php"
@@ -28,8 +29,11 @@ def covert_text_to_mp3(text):
     # print (audio_content_base64)
 
     write_mp3_by_base64_content(audio_content_base64)
-
-    play("foo.mp3")
+    
+    try:
+       play("foo.mp3")
+    except:
+       print ("play faild")
 
 
 def filter_response(response):
@@ -45,6 +49,11 @@ def write_mp3_by_base64_content(audio_content_base64, filename="foo.mp3"):
     with open(filename,"wb") as temp_file:
         temp_file.write(base64.b64decode(audio_content_base64))
 
+def play_with_sox(filename):
+    print ("sox play...")
+    os.system("play foo.mp3")
+
+
 def play(filename):
 
     if filename.startswith("/") or filename.startswith("./"):
@@ -55,8 +64,10 @@ def play(filename):
     try:
         playsound(filename)
     except:
-        Play_mp3.play(filename)
-
+        try: 
+            Play_mp3.play(filename)
+        except:
+            play_with_sox("foo.mp3")
 
 def print_hi(name):
     # 在下面的代码行中使用断点来调试脚本。
