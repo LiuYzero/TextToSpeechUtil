@@ -35,12 +35,13 @@ class tts_util(object):
         :param filename: 音频文件
         :return: 无
         """
-        print ("on speed method inside, filename is "+filename)
         self.filename = filename
+        
         is_conver_success = self.covert_text_to_mp3(text, filename)
+
         if(is_conver_success == 1):
             print ("text to mp3 faild")
-
+            return 
         self.play(self.filename)
 
     def covert_text_to_mp3(self, text, filename):
