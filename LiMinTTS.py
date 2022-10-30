@@ -35,13 +35,12 @@ class tts_util(object):
         :param filename: 音频文件
         :return: 无
         """
-        self.filename = filename
-        
-        is_conver_success = self.covert_text_to_mp3(text, filename)
 
+        self.filename = filename
+        is_conver_success = self.covert_text_to_mp3(text, filename)
         if(is_conver_success == 1):
             print ("text to mp3 faild")
-            return 
+
         self.play(self.filename)
 
     def covert_text_to_mp3(self, text, filename):
@@ -51,6 +50,7 @@ class tts_util(object):
         :param filename: 转换后mp3文件名称
         :return: 0 | 1
         """
+        print ("convert mp3 ing............")
         payload = {
             "type": "tn",
             "spd": 5,
@@ -63,7 +63,7 @@ class tts_util(object):
         headers = {}
 
         response = requests.request("POST", self.url, headers=headers, data=payload)
-        # print (response.text)
+        print (response.text)
 
         audio_content_base64 = self.filter_response(response)
         # print (audio_content_base64)
@@ -98,7 +98,7 @@ class tts_util(object):
         """
         print("sox play...")
         try:
-            ret = os.system("play "+filename)
+            ret = os.system("play"+filename)
             return ret
         except Exception:
             return 1
