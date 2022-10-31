@@ -98,7 +98,7 @@ class tts_util(object):
         """
         print("sox play...")
         try:
-            ret = os.system("play"+filename)
+            ret = os.system("play "+filename)
             return ret
         except Exception:
             return 1
