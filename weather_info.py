@@ -28,6 +28,8 @@ class weather_info(object):
         }
 
         response = requests.request("POST", self.url, headers=headers, data=payload)
+        print (response.text)
+
         return response.text
 
     def text_info(self):
