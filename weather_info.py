@@ -7,7 +7,7 @@ class weather_info(object):
 
     url="https://restapi.amap.com/v3/weather/weatherInfo"
     city_code = "441900"
-    key = "003bed47b58ce28408e3ee5377ab2cec"
+    key = "003bed47b58ce28408e3ee5377xx2cec"
     extensions="all"
     output="JSON"
 
